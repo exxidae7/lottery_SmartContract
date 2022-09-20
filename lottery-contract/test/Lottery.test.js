@@ -27,7 +27,7 @@ describe('Lottery Contract' , () => {
      it('allows one account to enter' , async () =>{
           await lottery.methods.enter().send({
                from : accounts[0],
-               value : web3.utils.toWei('0.02' , 'ether')
+               value : web3.utils.toWei('0.002' , 'ether')
           })
           const players = await lottery.methods.getPlayers().call(({
                from : accounts[0]
@@ -61,7 +61,7 @@ describe('Lottery Contract' , () => {
      it('sends money to the winner and resets the players' , async () => {
           await lottery.methods.enter().send({
                from: accounts[0],
-               value: web3.utils.toWei('2' , 'ether')
+               value: web3.utils.toWei('0.02' , 'ether')
           })
           const initialBalance = await web3.eth.getBalance(accounts[0])
 
@@ -73,6 +73,6 @@ describe('Lottery Contract' , () => {
 
           const difference =  finalBalance - initialBalance
           console.log(difference)
-          assert(difference > web3.utils.toWei('1.8' , 'ether'))
+          assert(difference > web3.utils.toWei('0.8' , 'ether'))
      })
 })
